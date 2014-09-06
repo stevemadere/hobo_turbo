@@ -1,1 +1,1 @@
-require 'hobo_turbo/workarounds/controller_helper'
+require 'hobo_turbo/workarounds/controller_helpers'

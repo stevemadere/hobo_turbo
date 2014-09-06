@@ -45,16 +45,10 @@ and we want to mass assign the +allergies+ attribute during signup.
           end
         end
 
-        Rails.logger.error("modified params: #{params.inspect}")
-        Rails.logger.error("deferred_params : #{deferred_attributes.inspect}")
-
         hobo_do_signup
         if deferred_attributes.values.any? {|v| !v.nil? }
-          Rails.logger.error("applying deferred_attributes : #{deferred_attributes.inspect}")
-
           this.save if this.new_record?
           this.update_attributes(deferred_attributes)
-          Rails.logger.error("subcats: #{this.subcategories.to_a.inspect}")
         end
       end
     end

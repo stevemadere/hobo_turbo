@@ -43,6 +43,7 @@ module HoboTurbo
     
 =end
     def repair_association_autocomplete_params(param_for_object, member_name, class_of_association=nil)
+      return nil unless param_for_object
       if class_of_association.nil?
         class_of_association = member_name.to_s.classify.constantize
         $stderr.puts "inferred class_of_association #{class_of_association.name}"

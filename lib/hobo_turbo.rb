@@ -1,3 +1,6 @@
+require 'hobo/model/lifecycles'
+require 'hobo/model/lifecycles/actions'
 require 'hobo_turbo/autocomplete_helpers'
 require 'hobo_turbo/user_owned_permissions'
 require 'hobo_turbo/workarounds'
+require 'hobo_turbo/multi_subsite_lifecycles.rb'

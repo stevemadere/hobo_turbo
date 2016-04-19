@@ -21,7 +21,7 @@ module HoboTurbo
     end
 
     def update_permitted?
-      return true if acting_user.administrator?
+      return true if acting_user && acting_user.administrator?
       if user
         return false unless (user_is?(acting_user) && !user_changed?)
       end

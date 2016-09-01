@@ -22,9 +22,8 @@ module HoboTurbo
 
     def update_permitted?
       return true if acting_user && acting_user.administrator?
-      if user
-        return false unless (user_is?(acting_user) && !user_changed?)
-      end
+      return false unless (user && user_is?(acting_user) && !user_changed?)
+
       if self.class.respond_to?(:immutable_fields)
         return false if any_changed?(*self.class.immutable_fields)
       end
@@ -33,7 +32,7 @@ module HoboTurbo
 
     def destroy_permitted?
       return true if acting_user.administrator?
-      user_is?(acting_user)
+      user && user_is?(acting_user)
     end
 
     def view_permitted?(field)

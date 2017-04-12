@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'hobo_turbo/autocomplete_helpers'
 require 'active_support/hash_with_indifferent_access'
 
@@ -42,7 +42,7 @@ class State < Model
 end
 
 
-class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
+class AutocompleteHelpersRepairParamsTestCase < Minitest::Test
   include HoboTurbo::AutocompleteHelpers
 
   def test_smoke
@@ -51,11 +51,9 @@ class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
     city_object = City.lookup_by_name(city_name)
     not_a_model_class = Hash.new
     params = {user_profile: { city: city_name } }
-    assert_nothing_thrown {
       repair_association_autocomplete_params(params[:user_profile],:city,city_model)
-    }
 
-    assert_raise(NoMethodError) {
+    assert_raises(NoMethodError) {
       repair_association_autocomplete_params(params[:user_profile],:city, not_a_model_class)
     }
 
@@ -66,9 +64,7 @@ class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
     city_name = "Chicago, IL, USA"
     city_object = City.lookup_by_name(city_name)
     params = {user_profile: { city: city_name } }
-    assert_nothing_thrown {
       repair_association_autocomplete_params(params[:user_profile],:city,city_model)
-    }
     assert_equal(city_object,params[:user_profile][:city])
   end
 
@@ -77,9 +73,7 @@ class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
     state_name = "Texas"
     state_object = State.find_by_name(state_name)
     params = {user_profile: { state: state_name } }
-    assert_nothing_thrown {
       repair_association_autocomplete_params(params[:user_profile],:state,state_model)
-    }
     assert_equal(state_object,params[:user_profile][:state])
   end
 
@@ -88,9 +82,7 @@ class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
     city_name = "Chicago, IL, USA"
     city_object = City.lookup_by_name(city_name)
     params = {user_profile: { city: city_name } }
-    assert_nothing_thrown {
       repair_association_autocomplete_params(params[:user_profile],:city)
-    }
     assert_equal(city_object,params[:user_profile][:city])
   end
 
@@ -100,9 +92,7 @@ class AutocompleteHelpersRepairParamsTestCase < Test::Unit::TestCase
     city_object = City.lookup_by_name(city_name)
     params = {user_profile: { city: city_name } }
     wrong_member_name = :county
-    assert_nothing_thrown {
       repair_association_autocomplete_params(params[:user_profile],wrong_member_name,city_model)
-    }
     assert(!params[:user_profile].include?(wrong_member_name), "Should not add missing parameters.")
   end
 

@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|

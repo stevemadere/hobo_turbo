@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'active_support/hash_with_indifferent_access'
 require 'ostruct'
 require 'hobo_turbo/workarounds/controller_helpers'
@@ -66,7 +66,7 @@ class UsersController
 
 end
 
-class WorkaroundControlllerHelpersTestCase < Test::Unit::TestCase
+class WorkaroundControlllerHelpersTestCase < Minitest::Test
   include HoboTurbo::Workarounds::ControllerHelpers
 
   def test_user_class_fixture

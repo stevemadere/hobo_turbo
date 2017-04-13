@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email = 'steve@stevemadere.com'
   s.homepage = 'https://github.com/stevemadere/hobo_turbo'
   s.license = 'MIT'
-  s.version = '0.0.4'
+  s.version = '0.0.5'
   s.authors = 'Steve Madere'
   s.files = Dir.glob('{lib}/**/*')
   s.platform = Gem::Platform::RUBY
